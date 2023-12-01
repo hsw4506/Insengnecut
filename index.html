@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인생네컷</title>
+    <style>
+        @font-face { /*폰트 적용을 위한 코드*/
+            font-family: "LeeSeoyun";
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff')
+                format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+        body{ /*body전체에  CSS 적용*/
+            font-family: "LeeSeoyun";
+            margin: 0; /*지정 요소로부터 바깥쪽으로의 여유공간*/
+            display: flex; /*지정 좌표가 아니게 위치*/
+            justify-content: center;/*가운데 정렬*/
+            background-image: url("./background.png");
+        }
+        .container{
+            width: 390px;
+            background-color: firebrick;
+            height: 100%;
+        }
+        .photos{
+            margin-top: 30px;
+        }
+        .photo-frame{
+            background-color: white;
+            margin: 15px 20px;
+            height: 200px;
+            background-size: cover;
+            position: relative;/*해당 div안에 있는 태그와의 위치 관계 지정*/
+            cursor: pointer;/*마우스 커서 변환*/
+        }
+        .footer{
+            display: flex;
+            flex-direction: column;/*footer 안에 있는 태그의 위치를 위아래로 조정*/
+            align-items: center;/*footer 안에 있는 태그의 위치를 중앙으로 조정*/
+        }
+        .f-title{
+            color: white;
+            font-size: 25px;
+            font-weight: 900;
+        }
+        .f-date{
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        #image1{
+            background-image: url('./img1.png');
+        }
+        #image2{
+            background-image: url('./img2.png');
+        }
+        #image3{
+            background-image: url('./img3.png');
+        }
+        #image4{
+            background-image: url('./img4.png');
+        }
+        .photo_description{
+            color: white;
+            background-color: black;
+            width: fit-content;/*글자수에 맞는 크기를 가짐*/
+            padding: 0 20px;/*안쪽 여백 지정*/
+            margin-bottom: 10px;/*아래에서 10px 띄움*/
+            border-radius: 10px;/*모서리를 둥글게 만듬*/
+            position: absolute;
+            bottom: 0;
+            transform: translate(-50%);
+            left: 50%;
+            opacity: 0;
+        }
+        .video{
+            width: 100%;
+            height: 100%;
+        }
+        .showText{
+            opacity: 0;/*투명*/
+        }
+        .hideText{
+            opacity: 1;/*불투명*/
+            transition: opacity 0.5s linear;/*투명해지는데 0.5초*/
+        }
+    </style>
+    <script>
+        function showText(number){/*텍스트 보이기*/
+            if(number === 1){
+                document.querySelector("#desc1").classList.remove("hideText");
+                document.querySelector("#desc1").classList.add("showText");
+            } else if(number === 2){
+                document.querySelector("#desc2").classList.remove("hideText");
+                document.querySelector("#desc2").classList.add("showText");
+            } else if(number === 3){
+                document.querySelector("#desc3").classList.remove("hideText");
+                document.querySelector("#desc3").classList.add("showText");
+            } else{
+                document.querySelector("#desc4").classList.remove("hideText");
+                document.querySelector("#desc4").classList.add("showText");
+            }
+        }
+        function hideText(number){/*텍스트 가리기*/
+            if(number === 1){
+                document.querySelector("#desc1").classList.remove("showText");
+                document.querySelector("#desc1").classList.add("hideText");
+            } else if(number === 2){
+                document.querySelector("#desc2").classList.remove("showText");
+                document.querySelector("#desc2").classList.add("hideText");
+            } else if(number ===3){
+                document.querySelector("#desc3").classList.remove("showText");
+                document.querySelector("#desc3").classList.add("hideText");
+            } else{
+                document.querySelector("#desc4").classList.remove("showText");
+                document.querySelector("#desc4").classList.add("hideText");
+            
+            }
+        }
+        function alertText(number){/*클릭시*/
+            alert(`${number}번째 추억이에요! 눌러주셔서 감사합니다 :)`);/*여기서 작은따옴표 아님! '이거 말고 `이거*/
+        }
+    </script>
+</head>
+<body>  <!--주석은 이렇게-->
+    <div class="container">
+        <div class="photos">
+            <div id="image1" 
+                class="photo-frame" 
+                onmouseover="hideText(1)" 
+                onmouseout="showText(1)" 
+                onclick="alertText(1)"
+            >
+                <span id="desc1" class="photo_description">
+                    정면
+                </span>
+            </div>
+            <div id="image2" 
+                class="photo-frame"
+                onmouseover="hideText(2)" 
+                onmouseout="showText(2)" 
+                onclick="alertText(2)"
+            >
+                <span id="desc2" class="photo_description">
+                    만세
+                </span>
+            </div>
+            <div id="image3" 
+                class="photo-frame"
+                onmouseover="hideText(3)" 
+                onmouseout="showText(3)" 
+                onclick="alertText(3)"
+            >
+                <span id="desc3" class="photo_description">
+                    안녕
+                </span>
+            </div>
+            <div id="image4" 
+                class="photo-frame"
+                onmouseover="hideText(4)" 
+                onmouseout="showText(4)" 
+                onclick="alertText(4)"
+            >
+                <span id="desc4" class="photo_description">
+                    수줍
+                </span>
+            </div>
+            <div class="photo-frame">
+                <iframe 
+                    src="https://www.youtube.com/embed/TWz1btekxfs?si=ZNEhUqW1AQifw5E2" 
+                    frameborder="0"
+                    class="video"
+                ></iframe>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="f-title">Happy Lunch Time</p>
+            <p class="f-date">2023. 12. 1</p>
+        </div>
+    </div>
+</body>
+</html>
